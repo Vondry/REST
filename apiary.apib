@@ -3,7 +3,7 @@ HOST: http://polls.apiblueprint.org/
 
 # REST API for Cinemas IS
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+College project which aims to create Information System for Cinemas chain
 
 # Group Reservation
 
@@ -12,13 +12,40 @@ Data related to reservation system
 ## Data Structures
 
 ### City (object)
-+ id: 1 (number, required)
-+ name: Hello World (string, required)
+- id: 1 (number, required)
+- name: City name (string, required)
+
+### Cinema (object)
+- id: 1 (number, required)
+- name: Cinema name (string, required)
+- street: Cinema street (string, required)
+- postcode: 123456 (number, required)
+- latitude: 40.71 (number, required)
+- longtitude: 74.00 (number, required)
 
 ## Cities Collection [/cities]
 
-### List all cities where are cinemas [GET]
+### List all cities [GET]
 
 + Response 200 (application/json)
     
-    + Attributes (array[City])
+    + Attributes (array[City, City, City])
+    
+## Cinemas Collection [/cinemas]
+
+### List all cinemas [GET]
+
++ Response 200 (application/json)
+    
+    + Attributes (array[Cinema, Cinema])
+    
+## Cinemas in Cities [/cities/cinemas]
+
+### List all cinemas associated to cities [GET]
+
++ Response 200 (application/json)
+
+    + Attributes (array)
+        - object
+            - Include City
+            - cinemas (array[Cinema, Cinema])
