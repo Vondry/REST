@@ -23,6 +23,16 @@ Data related to reservation system
 - latitude: 40.71 (number, required)
 - longtitude: 74.00 (number, required)
 
+### Movie (object)
+- id: 1 (number, required)
+- name: Movie name (string, required)
+- projection_times: 1541190611, 1541190611 (array[number], required) - Timestamp in seconds
+- language: cz (string, required)
+- subtitle: en (string, nullable)
+- access: 12+ (string, nullable)
+- genre: Movie genre (string, required)
+- length: 155  (number, required) - Move length in minutes
+
 ## Cities Collection [/cities]
 
 ### List all cities [GET]
@@ -49,3 +59,14 @@ Data related to reservation system
         - (object)
             - Include City
             - cinemas (array[Cinema])
+
+## List Movies associated to cinema [/cinemas/{id}/movies]
+
+### Cinemas  [GET]
+
++ Parameter
+    - id (number) - Cinema id
+
++ Response 200 (application/json)
+ 
+    + Attributes (array[Movie])
