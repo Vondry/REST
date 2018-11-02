@@ -29,7 +29,7 @@ Data related to reservation system
 
 + Response 200 (application/json)
     
-    + Attributes (array[City, City, City])
+    + Attributes (array[City])
     
 ## Cinemas Collection [/cinemas]
 
@@ -37,7 +37,7 @@ Data related to reservation system
 
 + Response 200 (application/json)
     
-    + Attributes (array[Cinema, Cinema])
+    + Attributes (array[Cinema])
     
 ## Cinemas in Cities [/cities/cinemas]
 
@@ -48,4 +48,4 @@ Data related to reservation system
     + Attributes (array)
         - (object)
             - Include City
-            - cinemas (array[Cinema, Cinema])
+            - cinemas (array[Cinema])
