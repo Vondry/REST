@@ -3,11 +3,11 @@ HOST: http://polls.apiblueprint.org/
 
 # REST API for Cinemas IS
 
-College project which aims to create Information System for Cinemas chain
+> College project which aims to create Information System for Cinemas chain
 
-# Group Reservation
+**Project**: https://gitlab.com/Aisik/iis_best_team
 
-Data related to reservation system
+**API specs**: https://github.com/Vondry/REST
 
 ## Data Structures
 
@@ -26,12 +26,17 @@ Data related to reservation system
 ### Movie (object)
 - id: 1 (number, required)
 - name: Movie name (string, required)
-- projection_times: 1541190611, 1541190611 (array[number], required) - Timestamp in seconds
+- times: 1541190611, 1541190611 (array[number], required) - Timestamp in seconds, when movies are beigin projected
+- images: cover_image.png, ./another/img.jpg (array[string], required) - Images related to the movie. First image is the cover.
 - language: cz (string, required)
-- subtitle: en (string, nullable)
+- subtitles: en (string, nullable)
 - access: 12+ (string, nullable)
 - genre: Movie genre (string, required)
 - length: 155  (number, required) - Move length in minutes
+
+# Group Reservation
+
+Data related to reservation system
 
 ## Cities Collection [/cities]
 
@@ -70,3 +75,27 @@ Data related to reservation system
 + Response 200 (application/json)
  
     + Attributes (array[Movie])
+
+# Group Movies
+
+Data related to movies
+
+## List All Movies [/movies]
+
+### List all Movies  [GET]
+
++ Response 200 (application/json)
+ 
+    + Attributes (array[Movie])
+        
+## Movie [/movies/{id}]
+
+### Movie  [GET]
+
++ Parameter
+    - id (number) - Movie id
+
++ Response 200 (application/json)
+ 
+    + Attributes 
+        - Include Movie
