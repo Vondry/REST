@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://http://localhost:5000
 
 # REST API for Cinemas IS
 
@@ -34,6 +34,13 @@ HOST: http://polls.apiblueprint.org/
 - genre: Movie genre (string, required)
 - length: 155  (number, required) - Move length in minutes
 
+### Hall (object)
+- id: 1 (number, required)
+- seats (array[(array[number])]) - every array in seats display seats row
+    - 1, 1, 1, 1, 0, 0  (array[number]) - Meaning of values: -1-no seat, 0-unavailable, 1-available
+    - 1, 1, 1, 1, 0, 0  (array[number])
+
+
 # Group Reservation
 
 Data related to reservation system
@@ -63,11 +70,11 @@ Data related to reservation system
     + Attributes (array)
         - (object)
             - Include City
-            - cinemas (array[Cinema])
+            - cinemas (array[number])
 
 ## List Movies associated to cinema [/cinemas/{id}/movies]
 
-### Cinemas  [GET]
+### Movies in cinemas  [GET]
 
 + Parameter
     - id (number) - Cinema id
@@ -99,3 +106,30 @@ Data related to movies
  
     + Attributes 
         - Include Movie
+        
+
+# Group Hall
+
+Data related to halls
+
+## Halls collection [/halls]
+
+### List all halls [GET]
+
++ Response 200 (application/json)
+    
+    + Attributes (array[Hall])
+
+## Hall related to movie [/halls?cinema={cinemaId}&movie={movieId}&time={time}]
+
+### Movie hall [GET]
+
++ Parameter
+    - cinemaId (number) - Cinema id
+    - movieId (number) - Movie id
+    - time (number) - Time when movie is played in given Cinema
+
++ Response 200 (application/json)
+ 
+    + Attributes 
+        - Include Hall
