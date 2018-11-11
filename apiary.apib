@@ -132,13 +132,11 @@ Validity of reservation needs to be checked also!
 
 + Response 200 (application/json)
      + Attributes (object)
-        - status: success (string)
-        - errors (array[string])
+        - Include StatusObject
         
 + Response 400 (application/json)
      + Attributes (object)
-        - status: failure (string)
-        - errors: Error1, Error2 (array[string])
+        - Include StatusObject
 
 # Group Movies
 
