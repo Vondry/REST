@@ -87,6 +87,22 @@ Data related to reservation system
 
 ### Reservation status  [GET]
 
++ Request (application/json)
+    + Attributes (object)
+        - cinemaId (number)
+        - movieId (number)
+        - movieTime (number)
+        - hallId (number)
+        - reservations (array)
+            - (object)
+                - tarrifId
+                - count
+        - price (number)
+        - seats (array)
+            - (object)
+                - row (number)
+                - column (number)
+
 + Response 200 (application/json)
      + Attributes (object)
         - status: success (string)
