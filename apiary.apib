@@ -83,6 +83,21 @@ Data related to reservation system
  
     + Attributes (array[Movie])
 
+## Check reservation status [/reservation/status]
+
+### Reservation status  [GET]
+
++ Response 200 (application/json)
+     + Attributes (object)
+        - status: success (string)
+        - errors (array[string])
+        
++ Response 400 (application/json)
+     + Attributes (object)
+        - status: failure (string)
+        - errors: Error1, Error2 (array[string])
+
+
 # Group Movies
 
 Data related to movies
