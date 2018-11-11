@@ -40,6 +40,29 @@ HOST: http://http://localhost:5000
     - 1, 1, 1, 1, 0, 0  (array[number]) - Meaning of values: -1-no seat, 0-unavailable, 1-available
     - 1, 1, 1, 1, 0, 0  (array[number])
 
+### Reservation (object)
+- cinemaId (number)
+- movieId (number)
+- movieTime (number)
+- hallId (number)
+- reservations (array)
+    - (object)
+        - tarrifId
+        - count
+- price (number)
+- seats (array)
+    - (object)
+        - row (number)
+        - column (number)
+
+### StatusObject (object)
+- status: {success|failure} (string)
+- errors: Error1, Error2 (array[string])
+
+### Tarrif (object)
+- id (number)
+- type: Adult (string)
+- price: 169 (number)
 
 # Group Reservation
 
@@ -83,26 +106,29 @@ Data related to reservation system
  
     + Attributes (array[Movie])
 
-## Reservation verification and application [/reservation]
+## Reservation [/reservation]
 
-### Reservation  [GET, POST]
-
+### Check reservation validity  [GET]
 
 + Request (application/json)
-    + Attributes (object)
-        - cinemaId (number)
-        - movieId (number)
-        - movieTime (number)
-        - hallId (number)
-        - reservations (array)
-            - (object)
-                - tarrifId
-                - count
-        - price (number)
-        - seats (array)
-            - (object)
-                - row (number)
-                - column (number)
+    + Attributes
+        - Include Reservation
+
++ Response 200 (application/json)
+     + Attributes (object)
+        - Include StatusObject
+        
++ Response 400 (application/json)
+     + Attributes (object)
+        - Include StatusObject
+
+### Make reservation  [POST]
+
+Validity of reservation needs to be checked also!
+
++ Request (application/json)
+    + Attributes
+        Include Reservation
 
 + Response 200 (application/json)
      + Attributes (object)
@@ -113,7 +139,6 @@ Data related to reservation system
      + Attributes (object)
         - status: failure (string)
         - errors: Error1, Error2 (array[string])
-
 
 # Group Movies
 
@@ -135,7 +160,6 @@ Data related to movies
     - id (number) - Movie id
 
 + Response 200 (application/json)
- 
     + Attributes 
         - Include Movie
         
@@ -165,3 +189,13 @@ Data related to halls
  
     + Attributes 
         - Include Hall
+        
+
+# Group Tarrif
+
+## Get available tarrifs [/tarrifs]
+
+### Tarrifs [GET]
++ Response 200 (application/json)
+ 
+    + Attributes (array[Tarrif])
