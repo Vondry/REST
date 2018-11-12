@@ -21,7 +21,7 @@ HOST: http://http://localhost:5000
 - street: Cinema street (string, required)
 - postcode: 123456 (number, required)
 - latitude: 40.71 (number, required)
-- longtitude: 74.00 (number, required)
+- longtitude: 74.00 (number, required)  
 
 ### Movie (object)
 - id: 1 (number, required)
@@ -129,6 +129,7 @@ Validity of reservation needs to be checked also!
 + Request (application/json)
     + Attributes
        - Include Reservation
+       - userId (number)
 
 + Response 200 (application/json)
      + Attributes (object)
