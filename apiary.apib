@@ -47,8 +47,8 @@ HOST: http://http://localhost:5000
 - hallId (number)
 - reservations (array)
     - (object)
-        - tarrifId
-        - count
+        - tarrifId (number)
+        - count (number)
 - price (number)
 - seats (array)
     - (object)
@@ -59,7 +59,7 @@ HOST: http://http://localhost:5000
 - status: {success|failure} (string)
 - errors: Error1, Error2 (array[string])
 
-### Tarrif (object)
+### Tariff (object)
 - id (number)
 - type: Adult (string)
 - price: 169 (number)
@@ -189,11 +189,11 @@ Data related to halls
         - Include Hall
         
 
-# Group Tarrif
+# Group Tariff
 
-## Get available tarrifs [/tarrifs]
+## Get available tariffs [/tariffs]
 
-### Tarrifs [GET]
+### Tariffs [GET]
 + Response 200 (application/json)
  
-    + Attributes (array[Tarrif])
+    + Attributes (array[Tariff])
