@@ -106,9 +106,11 @@ Data related to reservation system
  
     + Attributes (array[Movie])
 
-## Reservation [/reservation]
+## Reservation check [/reservation/validate]
 
-### Check reservation validity  [GET]
+- Checks validity of reservation.
+
+### Check reservation validity  [POST]
 
 + Request (application/json)
     + Attributes
@@ -122,9 +124,12 @@ Data related to reservation system
      + Attributes (object)
         - Include StatusObject
 
+## Reservation [/reservation]
+
 ### Make reservation  [POST]
 
-Validity of reservation needs to be checked also!
+- Validity of reservation needs to be checked also! 
+- If everything checks out, then reservation is made.
 
 + Request (application/json)
     + Attributes
