@@ -55,7 +55,8 @@ HOST: http://http://localhost:5000
         - row (number)
         - column (number)
 
-### StatusObject (object)
+### ReservationStatusObject (object)
+- id (number) - Unique reservation id used to match client's reservation
 - status: {success|failure} (string)
 - errors: Error1, Error2 (array[string])
 
@@ -118,11 +119,11 @@ Data related to reservation system
 
 + Response 200 (application/json)
      + Attributes (object)
-        - Include StatusObject
+        - Include ReservationStatusObject
         
 + Response 400 (application/json)
      + Attributes (object)
-        - Include StatusObject
+        - Include ReservationStatusObject
 
 ## Reservation [/reservation]
 
@@ -137,11 +138,11 @@ Data related to reservation system
 
 + Response 200 (application/json)
      + Attributes (object)
-        - Include StatusObject
+        - Include ReservationStatusObject
         
 + Response 400 (application/json)
      + Attributes (object)
-        - Include StatusObject
+        - Include ReservationStatusObject
 
 # Group Movies
 
