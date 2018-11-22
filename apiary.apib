@@ -45,7 +45,7 @@ HOST: http://http://localhost:5000
 - row (number, required)
 - column (number, required)
 
-### SeatPayments (object)
+### SeatReservations (object)
 - tariffId (number, required)
 - count (number, required)
 
@@ -54,7 +54,7 @@ HOST: http://http://localhost:5000
 - movieId (number, required)
 - movieTime (number, required)
 - hallId (number, required)
-- reservations (array[SeatPayments], required)
+- reservations (array[SeatReservations], required)
 - price (number, required)
 - seats (array[Seat], required)
 
@@ -86,8 +86,10 @@ HOST: http://http://localhost:5000
 
 ### Reservations (object)
 - id (number, required)
-- payed (boolean, required)
-- used (User, required)
+- payed (boolean, required) - indicated whether reservation was payed
+- user (User) - If user was logged then user is returned, otherwise null
+- reservations (array[SeatReservations], required)
+- price (number, required)
 
 # Group Reservation
 
