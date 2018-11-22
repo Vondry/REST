@@ -37,44 +37,46 @@ HOST: http://http://localhost:5000
 
 ### Hall (object)
 - id: 1 (number, required)
-- seats (array[(array[number])]) - every array in seats display seats row
-    - 1, 1, 1, 1, 0, 0  (array[number]) - Meaning of values: -1-no seat, 0-unavailable, 1-available
-    - 1, 1, 1, 1, 0, 0  (array[number])
+- seats (array[(array[number])], required) - every array in seats display seats row
+    - 1, 1, 1, 1, 0, 0  (array[number], required) - Meaning of values: -1-no seat, 0-unavailable, 1-available
+    - 1, 1, 1, 1, 0, 0  (array[number], required)
 
 ### Reservation (object)
-- cinemaId (number)
-- movieId (number)
-- movieTime (number)
-- hallId (number)
-- reservations (array)
-    - (object)
-        - tariffId (number)
-        - count (number)
-- price (number)
-- seats (array)
-    - (object)
-        - row (number)
-        - column (number)
+- cinemaId (number, required)
+- movieId (number, required)
+- movieTime (number, required)
+- hallId (number, required)
+- reservations (array, required)
+    - (object, required)
+        - tariffId (number, required)
+        - count (number, required)
+- price (number, required)
+- seats (array, required)
+    - (object, required)
+        - row (number, required)
+        - column (number, required)
 
 ### ReservationStatusObject (object)
-- id (number) - Unique reservation id used to match client's reservation
-- status: {success|failure} (string)
-- errors: Error1, Error2 (array[string])
+- id (number, required) - Unique reservation id used to match client's reservation
+- status: {success|failure} (string, required)
+- errors: Error1, Error2 (array[string], required)
 
 ### Tariff (object)
-- id (number)
-- type: Adult (string)
-- price: 169 (number)
+- id (number, required)
+- type: Adult (string, required)
+- price: 169 (number, required)
 
 ### TokenPayload (object)
-- id (number) - user id
-- role (string) - user role e.g. cashier, manager, CEO, admin,...
-- exp (number) - expiration time of token
+- id (number, required) - user id
+- role (string, required) - user role e.g. cashier, manager, CEO, admin,...
+- exp (number, required) - expiration time of token
 
 ### TokenResponse (object)
-- tokenType: Bearer (string) - Authorization: <tokenType> <token>
-- acccessToken (string) - JWT short-lived token 
-- resfreshToken (string) - JWT long-lived token
+- tokenType: Bearer (string, required) - Authorization: <tokenType> <token>
+- acccessToken (string, required) - JWT short-lived token 
+- resfreshToken (string, required) - JWT long-lived token
+
+### Reservations (object)
 
 # Group Reservation
 
@@ -215,7 +217,6 @@ Data related to halls
  
     + Attributes (array[Tariff])
     
-    
 # Group Auth
 
 ## Authenticate user [/authentication]
@@ -268,3 +269,16 @@ As a result, user needs to authenticate again.
 + Response 401 (application/json)
     + Attributes 
         - errors (array[string])
+        
+        
+
+# Group CMS
+
+**Content Management System**
+
+## Reservations [/reservations]
+
+### Reservations [GET]
++ Response 200 (application/json)
+ 
+    + Attributes (array[Reservations])
