@@ -26,7 +26,7 @@ HOST: http://http://localhost:5000
 ### Movie (object)
 - id: 1 (number, required)
 - name: Movie name (string, required)
-- role (string) - user role e.g. cashier, manager, CEO, admin,...
+- role (string, required) - user role e.g. cashier, manager, CEO, admin,...
 - times: 1541190611, 1541190611 (array[number], required) - Timestamp in seconds, when movies are beigin projected
 - images: cover_image.png, ./another/img.jpg (array[string], required) - Images related to the movie. First image is the cover.
 - language: cz (string, required)
@@ -41,20 +41,22 @@ HOST: http://http://localhost:5000
     - 1, 1, 1, 1, 0, 0  (array[number], required) - Meaning of values: -1-no seat, 0-unavailable, 1-available
     - 1, 1, 1, 1, 0, 0  (array[number], required)
 
+### Seat (object)
+- row (number, required)
+- column (number, required)
+
+### SeatPayments (object)
+- tariffId (number, required)
+- count (number, required)
+
 ### Reservation (object)
 - cinemaId (number, required)
 - movieId (number, required)
 - movieTime (number, required)
 - hallId (number, required)
-- reservations (array, required)
-    - (object, required)
-        - tariffId (number, required)
-        - count (number, required)
+- reservations (array[SeatPayments], required)
 - price (number, required)
-- seats (array, required)
-    - (object, required)
-        - row (number, required)
-        - column (number, required)
+- seats (array[Seat], required)
 
 ### ReservationStatusObject (object)
 - id (number, required) - Unique reservation id used to match client's reservation
@@ -76,7 +78,16 @@ HOST: http://http://localhost:5000
 - acccessToken (string, required) - JWT short-lived token 
 - resfreshToken (string, required) - JWT long-lived token
 
+### User (object)
+- id (number, required)
+- name (string, required)
+- surname (string, required)
+- email (string, required)
+
 ### Reservations (object)
+- id (number, required)
+- payed (boolean, required)
+- used (User, required)
 
 # Group Reservation
 
