@@ -307,11 +307,11 @@ As a result, user needs to authenticate again.
 
 **Content Management System**
 
-> **400** - Access token is **malformed**. User needs to log-in again
-
 > **401** - Access token **expired**. User may try to obtain fresh Access token using Refresh token.
 
 > **403** - Access token **is valid**, but user is **not authorized** to access request data.
+
+> **422** - Access token is **malformed**. User needs to log-in again
 
 ## Reservations [/reservations]
 
