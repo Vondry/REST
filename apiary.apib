@@ -280,9 +280,9 @@ As a result, user needs to authenticate again.
 
 > **200** - Refresh token is sucessfully **verified**. And user receives new `Access token`
 
-> **400** - Refresh token is **malformed**. User needs to log-in again
-
 > **401** - Refresh token may **expired** or does not have other parts valid. User needs to log-in again.
+
+> **422** - Refresh token is **malformed**. User needs to log-in again
 
 + Request Headers
 
@@ -291,14 +291,14 @@ As a result, user needs to authenticate again.
 + Response 200 (application/json)
     + Attributes 
         - accessToken (string) - access token
-        
-+ Response 400 (application/json)
-    + Attributes 
-        - errors (array[string])
-        
+    
 + Response 401 (application/json)
     + Attributes 
         - errors (array[string])
+        
++ Response 422 (application/json)
+    + Attributes 
+        - errors (array[string])ha
         
         
 # Group CMS
