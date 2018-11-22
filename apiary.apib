@@ -86,12 +86,13 @@ HOST: http://http://localhost:5000
 
 ### Reservation (object)
 - id (number, required)
-- payed (boolean, required) - indicated whether reservation was payed
 - user (User) - If user was logged then user is returned, otherwise null
 - reservations (array[SeatReservations], required)
 - price (number, required)
 - created (number, required) - timestamp in ms, when reservation was created
+- payed (number, required) - timestamp in ms, when reservation was payed
 - updated (number, required) - timestamp in ms, when reservation was last edited
+- deleted (number, required) - timestamp in ms, when reservation was last deleted
 
 # Group Reservation
 
@@ -335,6 +336,58 @@ As a result, user needs to authenticate again.
  
     + Attributes (array[Reservations])
 
++ Response 400 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
++ Response 401 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
++ Response 403 (application/json)
+    + Attributes 
+        - errors (array[string])
+
+## User [/users/{id}]
+
+### User [GET]
++ Request Headers
+
+        Authorization: <tokenType> <token>
+
++ Parameter
+    - id (number) - User id
+ 
++ Response 200 (application/json)
+    + Attributes 
+        - Include User
+    
++ Response 400 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
++ Response 401 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
++ Response 403 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
+## User reservations [/users/{id}/reservations]
+
+### User reservations [GET]
++ Request Headers
+
+        Authorization: <tokenType> <token>
+
++ Parameter
+    - id (number) - User id
+
++ Response 200 (application/json)
+    + Attributes
+        - reservations (array[Reservation])
+    
 + Response 400 (application/json)
     + Attributes 
         - errors (array[string])
