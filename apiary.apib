@@ -49,7 +49,7 @@ HOST: http://http://localhost:5000
 - tariffId (number, required)
 - count (number, required)
 
-### Reservation (object)
+### ReservationBlueprint (object)
 - cinemaId (number, required)
 - movieId (number, required)
 - movieTime (number, required)
@@ -84,12 +84,14 @@ HOST: http://http://localhost:5000
 - surname (string, required)
 - email (string, required)
 
-### Reservations (object)
+### Reservation (object)
 - id (number, required)
 - payed (boolean, required) - indicated whether reservation was payed
 - user (User) - If user was logged then user is returned, otherwise null
 - reservations (array[SeatReservations], required)
 - price (number, required)
+- created (number, required) - timestamp in ms, when reservation was created
+- updated (number, required) - timestamp in ms, when reservation was last edited
 
 # Group Reservation
 
@@ -141,7 +143,7 @@ Data related to reservation system
 
 + Request (application/json)
     + Attributes
-        - Include Reservation
+        - Include ReservationBlueprint
 
 + Response 200 (application/json)
      + Attributes (object)
@@ -160,7 +162,7 @@ Data related to reservation system
 
 + Request (application/json)
     + Attributes
-       - Include Reservation
+       - Include ReservationBlueprint
 
 + Response 200 (application/json)
      + Attributes (object)
@@ -284,7 +286,6 @@ As a result, user needs to authenticate again.
         - errors (array[string])
         
         
-
 # Group CMS
 
 **Content Management System**
@@ -292,6 +293,27 @@ As a result, user needs to authenticate again.
 ## Reservations [/reservations]
 
 ### Reservations [GET]
++ Request Headers
+
+        Authorization: <tokenType> <token>
+        
++ Response 200 (application/json)
+ 
+    + Attributes (array[Reservations])
+
+### Update reservation [PATCH]
+
+- may include just parts of reservation. New information should be merged to the old one.
+
++ Request Headers
+
+        Authorization: <tokenType> <token>
+
++ Request (application/json)
+    + Attributes 
+        - Include Reservation
+       
+       
 + Response 200 (application/json)
  
     + Attributes (array[Reservations])
