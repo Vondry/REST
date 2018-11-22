@@ -313,7 +313,14 @@ As a result, user needs to authenticate again.
 
 > **422** - Access token is **malformed**. User needs to log-in again
 
+#### Roles
+> Priority for **shared** resources:
+`user`, `cashier`, `manager`, `CEO`
+
+
 ## Reservations [/reservations]
+
+###### Access rights to reservations/**: higher than `user`
 
 ### Reservations [GET]
 + Request Headers
@@ -370,6 +377,8 @@ As a result, user needs to authenticate again.
         - errors (array[string])
 
 ## User [/users/{id}]
+
+###### Access rights to reservations/**: higher or equal to `user`
 
 ### User [GET]
 + Request Headers
