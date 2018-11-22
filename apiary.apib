@@ -71,12 +71,12 @@ HOST: http://http://localhost:5000
 ### TokenPayload (object)
 - id (number, required) - user id
 - role (string, required) - user role e.g. cashier, manager, CEO, admin,...
-- exp (number, required) - expiration time of token
+- exp (number, required) - expiration time of token in seconds
 
 ### TokenResponse (object)
 - tokenType: Bearer (string, required) - Authorization: <tokenType> <token>
-- acccessToken (string, required) - JWT short-lived token 
-- resfreshToken (string, required) - JWT long-lived token
+- acccessToken (string, required) - JWT short-lived token (20s)
+- resfreshToken (string, required) - JWT long-lived token (1min)
 
 ### User (object)
 - id (number, required)
@@ -281,7 +281,7 @@ As a result, user needs to authenticate again.
 
 + Request Headers
 
-        Authorization: <tokenType> <token>
+        Authorization: <tokenType> <refreshToken>
 
 + Response 200 (application/json)
     + Attributes 
@@ -311,7 +311,7 @@ As a result, user needs to authenticate again.
 ### Reservations [GET]
 + Request Headers
 
-        Authorization: <tokenType> <token>
+        Authorization: <tokenType> <accessToken>
         
 + Response 200 (application/json)
  
@@ -329,9 +329,14 @@ As a result, user needs to authenticate again.
     + Attributes 
         - errors (array[string])
 
+## Reservations [/reservations/{id}]
+
 ### Update reservation [PATCH]
 
 - may include parts or whole reservation. Received reservation should be merged to the old one, which overwrites.
+
++ Parameter
+    - id (number)
 
 + Request Headers
 
@@ -362,7 +367,7 @@ As a result, user needs to authenticate again.
 ### User [GET]
 + Request Headers
 
-        Authorization: <tokenType> <token>
+        Authorization: <tokenType> <accessToken>
 
 + Parameter
     - id (number) - User id
@@ -388,7 +393,7 @@ As a result, user needs to authenticate again.
 ### User reservations [GET]
 + Request Headers
 
-        Authorization: <tokenType> <token>
+        Authorization: <tokenType> <accessToken>
 
 + Parameter
     - id (number) - User id
