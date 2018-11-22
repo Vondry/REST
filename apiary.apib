@@ -67,8 +67,9 @@ HOST: http://http://localhost:5000
 - price: 169 (number)
 
 ### TokenPayload (object)
-- userId (number)
+- id (number) - user id
 - role (string) - user role e.g. cashier, manager, CEO, admin,...
+- exp (number) - expiration time of token
 
 ### TokenResponse (object)
 - tokenType: Bearer (string) - Authorization: <tokenType> <token>
@@ -213,3 +214,57 @@ Data related to halls
 + Response 200 (application/json)
  
     + Attributes (array[Tariff])
+    
+    
+# Group Auth
+
+## Authenticate user [/authentication]
+
+### Authenticate [POST]
+
+> **200** - Login has **succeded** and user obtains `TokenResponse`
+
+> **400** - Login has **failed**, due to:
+- Missing email or password
+- Invalid email or password
+
+As a result, user needs to authenticate again.
+
++ Request (application/json)
+    + Attributes
+       - email (string) - user email
+       - password (string) - user password
+
++ Response 200 (application/json)
+    + Attributes 
+        - Include TokenResponse
+        
++ Response 400 (application/json)
+    + Attributes 
+        - errors (array[string])
+    
+## Refresh authentication [/authentication/refresh]
+
+### Refresh [POST]
+
+> **200** - Refresh token is sucessfully **verified**. And user receives new `Access token`
+
+> **400** - Refresh token is **malformed**. User needs to log-in again
+
+> **401** - Refresh token may **expired** or does not have other parts valid. User needs to log-in again.
+
++ Request Headers
+
+        Authorization: <tokenType> <token>
+
++ Response 200 (application/json)
+    + Attributes 
+        - accessToken (string) - access token
+        
++ Response 400 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
++ Response 401 (application/json)
+    + Attributes 
+        - errors (array[string])
