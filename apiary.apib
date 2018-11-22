@@ -94,6 +94,15 @@ HOST: http://http://localhost:5000
 - updated (number, required) - timestamp in ms, when reservation was last edited
 - deleted (number, required) - timestamp in ms, when reservation was last deleted
 
+### UserReservation (object)
+- id (number, required)
+- reservations (array[SeatReservations], required)
+- price (number, required)
+- created (number, required) - timestamp in ms, when reservation was created
+- payed (number, required) - timestamp in ms, when reservation was payed
+- updated (number, required) - timestamp in ms, when reservation was last edited
+- deleted (number, required) - timestamp in ms, when reservation was last deleted
+
 # Group Reservation
 
 Data related to reservation system
@@ -385,8 +394,7 @@ As a result, user needs to authenticate again.
     - id (number) - User id
 
 + Response 200 (application/json)
-    + Attributes
-        - reservations (array[Reservation])
+    + Attributes (array[UserReservation])
     
 + Response 400 (application/json)
     + Attributes 
