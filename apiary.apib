@@ -26,6 +26,7 @@ HOST: http://http://localhost:5000
 ### Movie (object)
 - id: 1 (number, required)
 - name: Movie name (string, required)
+- role (string) - user role e.g. cashier, manager, CEO, admin,...
 - times: 1541190611, 1541190611 (array[number], required) - Timestamp in seconds, when movies are beigin projected
 - images: cover_image.png, ./another/img.jpg (array[string], required) - Images related to the movie. First image is the cover.
 - language: cz (string, required)
@@ -64,6 +65,15 @@ HOST: http://http://localhost:5000
 - id (number)
 - type: Adult (string)
 - price: 169 (number)
+
+### TokenPayload (object)
+- userId (number)
+- role (string) - user role e.g. cashier, manager, CEO, admin,...
+
+### TokenResponse (object)
+- tokenType: Bearer (string) - Authorization: <tokenType> <token>
+- acccessToken (string) - JWT short-lived token 
+- resfreshToken (string) - JWT long-lived token
 
 # Group Reservation
 
