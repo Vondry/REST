@@ -58,10 +58,13 @@ HOST: http://http://localhost:5000
 - price (number, required)
 - seats (array[Seat], required)
 
-### ReservationStatusObject (object)
-- id (number, required) - Unique reservation id used to match client's reservation
+### StatusObject (object)
 - status: {success|failure} (string, required)
 - errors: Error1, Error2 (array[string], required)
+
+### ReservationStatusObject (object)
+- id (number, required) - Unique reservation id used to match client's reservation
+- Include StatusObject
 
 ### Tariff (object)
 - id (number, required)
@@ -84,13 +87,13 @@ HOST: http://http://localhost:5000
 - name (string, required)
 - surname (string, required)
 - email (string, required)
-- city (string, required)
-- street (string, required)
-- house_number (number, required)
-- postcode (number, required)
-- phone_number (number, required)
+- city (string)
+- street (string)
+- houseNumber (number)
+- postcode (number)
+- phoneNumber (number)
 - password (string, required)
-- role (string, required)
+- role (string)
 
 ### Reservation (object)
 - id (number, required)
@@ -249,7 +252,30 @@ Data related to halls
 + Response 200 (application/json)
  
     + Attributes (array[Tariff])
-    
+
+# Group Registration
+
+## Register user [/registrate]
+
+> **200** - Registration succedded
+
+> **400** - Registration has **failed**, due to:
+- Missing some of required fields
+- Invalid syntax of fields
+- ...
+
+### Register [POST]
+
++ Request (application/json)
+    + Attributes
+        - Include User
+
++ Response 200 (application/json)
+
++ Response 400 (application/json)
+    + Attributes 
+        - errors (array[string])
+
 # Group Auth
 
 ## Authenticate user [/authentication]
@@ -302,8 +328,8 @@ As a result, user needs to authenticate again.
 + Response 422 (application/json)
     + Attributes 
         - errors (array[string])ha
-        
-        
+
+
 # Group CMS
 
 **Content Management System**
