@@ -26,11 +26,9 @@ HOST: http://http://localhost:5000
 ### Movie (object)
 - id: 1 (number, required)
 - name: Movie name (string, required)
-- role (string, required) - user role e.g. cashier, manager, CEO, admin,...
 - times: 1541190611, 1541190611 (array[number], required) - Timestamp in seconds, when movies are beigin projected
 - images: cover_image.png, ./another/img.jpg (array[string], required) - Images related to the movie. First image is the cover.
-- language: cz (string, required)
-- subtitles: en (string, nullable)
+- rating: 70 (number, required)
 - access: 12+ (string, nullable)
 - genre: Movie genre (string, required)
 - length: 155  (number, required) - Move length in minutes
@@ -40,8 +38,7 @@ HOST: http://http://localhost:5000
 - name: Movie name (string, required)
 - images: cover_image.png, ./another/img.jpg (array[string], required) - Images related to the movie.
 - trailers: https://youtube... (array[string], required) - Trailers related to the movie
-- language: cz (string, required)
-- subtitles: en (string, nullable)
+- rating: 70 (number, required)
 - access: 12+ (string, nullable)
 - genres: Movie genre (array[string], required)
 - length: 155  (number, required) - Move length in minutes
