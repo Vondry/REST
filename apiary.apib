@@ -346,11 +346,11 @@ As a result, user needs to authenticate again.
 `user`, `cashier`, `manager`, `CEO`
 
 
-## Reservations [/reservations]
+## Lists reservations [/reservations]
 
 ###### Access rights to reservations/**: higher than `user`
 
-### Reservations [GET]
+### Get all reservations [GET]
 + Request Headers
 
         Authorization: <tokenType> <accessToken>
@@ -371,7 +371,7 @@ As a result, user needs to authenticate again.
     + Attributes 
         - errors (array[string])
 
-## Reservations [/reservations/{id}]
+## Update Reservations [/reservations/{id}]
 
 ### Update reservation [PATCH]
 
@@ -432,7 +432,7 @@ As a result, user needs to authenticate again.
     + Attributes 
         - errors (array[string])
         
-## User reservations [/users/{id}/reservations]
+### User reservations [/users/{id}/reservations]
 
 ### User reservations [GET]
 + Request Headers
@@ -445,6 +445,60 @@ As a result, user needs to authenticate again.
 + Response 200 (application/json)
     + Attributes (array[UserReservation])
     
++ Response 400 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
++ Response 401 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
++ Response 403 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
+
+### User refreshTokens [/users/{id}/refreshTokens]
+
+### List refreshTokens [GET]
++ Request Headers
+
+        Authorization: <tokenType> <accessToken>
+
++ Parameter
+    - id (number) - User id
+
++ Response 200 (application/json)
+    + Attributes (array)
+        - (object)
+            - id
+            - refreshToken
+    
++ Response 400 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
++ Response 401 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
++ Response 403 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
+### User refreshTokens [/users/{userId}/refreshTokens/{tokenId}]
+
+### List refreshTokens [DELETE]
++ Request Headers
+
+        Authorization: <tokenType> <accessToken>
+
++ Parameter
+    - userId (number) - User id
+    - tokenId (number) - Refresh token id
+
++ Response 200 (application/json)
+
 + Response 400 (application/json)
     + Attributes 
         - errors (array[string])
