@@ -204,17 +204,44 @@ Data related to reservation system
 
 Data related to movies
 
-## List All Movies [/movies]
+## Get All Movies [/movies]
 
-### List all Movies  [GET]
+### Get all Movies  [GET]
 
 + Response 200 (application/json)
  
     + Attributes (array[Movie])
         
+
+### Create Movie [PUT]
+
+###### Access rights: `cashier`, `manager`, `CEO`
+
++ Request Headers
+
+        Authorization: <tokenType> <token>
+
++ Request (application/json)
+    + Attributes 
+        - Include Movie
+       
++ Response 200 (application/json)
+
++ Response 400 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
++ Response 401 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
++ Response 403 (application/json)
+    + Attributes 
+        - errors (array[string])
+
 ## Movie [/movies/{id}]
 
-### Movie  [GET]
+### Get speecific Movie  [GET]
 
 + Parameter
     - id (number) - Movie id
@@ -222,6 +249,32 @@ Data related to movies
 + Response 200 (application/json)
     + Attributes 
         - Include Movie
+
+### Delete Movie [DELETE]
+
+###### Access rights: `cashier`, `manager`, `CEO`
+
++ Parameter
+    - id (number) - Movie id
+
++ Request Headers
+
+        Authorization: <tokenType> <token>
+
++ Response 200 (application/json)
+
++ Response 400 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
++ Response 401 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
++ Response 403 (application/json)
+    + Attributes 
+        - errors (array[string])
+
         
 
 # Group Hall
@@ -414,7 +467,7 @@ As a result, user needs to authenticate again.
 
 ### Create Projection [PUT]
 
-###### Access rights to projections/**: `cashier`, `manager`, `CEO`
+###### Access rights: `cashier`, `manager`, `CEO`
 
 + Request Headers
 
@@ -438,11 +491,11 @@ As a result, user needs to authenticate again.
     + Attributes 
         - errors (array[string])
 
-## Delete Projections [/projections/{id}]
+## Delete Projection [/projections/{id}]
 
 ### Delete Projection [DELETE]
 
-###### Access rights to projections/**: `cashier`, `manager`, `CEO`
+###### Access rights: `cashier`, `manager`, `CEO`
 
 + Parameter
     - id (number) - Projection id
