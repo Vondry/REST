@@ -115,6 +115,12 @@ HOST: http://http://localhost:5000
 - updated (number, required) - timestamp in ms, when reservation was last edited
 - deleted (number, required) - timestamp in ms, when reservation was last deleted
 
+### Projection (object)
+- cinemaId (number, required)
+- hallId (number, required)
+- movieId (number, required)
+- movieTime (number, required)
+
 # Group Reservation
 
 Data related to reservation system
@@ -391,6 +397,61 @@ As a result, user needs to authenticate again.
 + Response 200 (application/json)
  
     + Attributes (array[Reservations])
+
++ Response 400 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
++ Response 401 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
++ Response 403 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
+## Update Reservations [/projections]
+
+### Create Projection [PUT]
+
+###### Access rights to projections/**: `cashier`, `manager`, `CEO`
+
++ Request Headers
+
+        Authorization: <tokenType> <token>
+
++ Request (application/json)
+    + Attributes 
+        - Include Projection
+       
++ Response 200 (application/json)
+
++ Response 400 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
++ Response 401 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
++ Response 403 (application/json)
+    + Attributes 
+        - errors (array[string])
+
+## Delete Projections [/projections/{id}]
+
+### Delete Projection [DELETE]
+
+###### Access rights to projections/**: `cashier`, `manager`, `CEO`
+
++ Parameter
+    - id (number) - Projection id
+
++ Request Headers
+
+        Authorization: <tokenType> <token>
+
++ Response 200 (application/json)
 
 + Response 400 (application/json)
     + Attributes 
