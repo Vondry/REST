@@ -189,6 +189,18 @@ Data related to reservation system
 + Response 200 (application/json)
  
     + Attributes (array[Movie])
+    
+## Movies for given day [/cinemas/{id}/movies/{movieTime}]
+
+### Specific movies in cinemas  [GET]
+
++ Parameter
+    - id (number) - Cinema id
+    - movieTime (number) - Timestamp for movie. Units which matters year, month, day
+
++ Response 200 (application/json)
+ 
+    + Attributes (array[Movie])
 
 ## Reservation check [/reservation/validate]
 
