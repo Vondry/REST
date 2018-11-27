@@ -23,25 +23,20 @@ HOST: http://http://localhost:5000
 - latitude: 40.71 (number, required)
 - longtitude: 74.00 (number, required)  
 
-### Image (object)
-- id: 1 (number, required)
-- description: cover_image (string, required)
-- path: /assest/... (string, required)
-
 ### Movie (object)
 - id: 1 (number, required)
 - name: Movie name (string, required)
 - times: 1541190611, 1541190611 (array[number], required) - Timestamp in seconds, when movies are beigin projected
-- images (array[Image], required) - Images related to the movie. First image is the cover.
+- images: cover_image.png, ./another/img.jpg (array[string], required) - Images related to the movie. First image is the cover.
 - rating: 70 (number, required)
 - access: 12+ (string, nullable)
-- genres: Movie genre (array[string], required)
+- genre: Movie genre (string, required)
 - length: 155  (number, required) - Move length in minutes
 
 ### NewMovie (object)
 - id: 1 (number, required)
 - name: Movie name (string, required)
-- images (array[array[Image]], required) - Images related to the movie.
+- images: cover_image.png, ./another/img.jpg (array[string], required) - Images related to the movie.
 - trailers: https://youtube... (array[string], required) - Trailers related to the movie
 - rating: 70 (number, required)
 - access: 12+ (string, nullable)
@@ -63,7 +58,11 @@ HOST: http://http://localhost:5000
 - count (number, required)
 
 ### ReservationBlueprint (object)
-- userId (number, required) - if null then no user is not logged in
+- user (object, required)
+    - id (number, required) - if null then no user is not logged in
+    - name (string) - if this field is not present, then user is already logged in
+    - surname (string) - if this field is not present, then user is already logged in
+    - email (string) - if this field is not present, then user is already logged in
 - cinemaId (number, required)
 - movieId (number, required)
 - movieTime (number, required)
@@ -111,7 +110,11 @@ HOST: http://http://localhost:5000
 
 ### Reservation (object)
 - id (number, required)
-- user (User) - If user was logged then user is returned, otherwise null
+- user (object, required)
+    - id (number, required) - id of logged or anonymous user
+    - name (string, required)
+    - surname (string, required)
+    - email (string, required)
 - reservations (array[SeatReservations], required)
 - price (number, required)
 - created (number, required) - timestamp in ms, when reservation was created
@@ -429,7 +432,7 @@ As a result, user needs to authenticate again.
         
 + Response 200 (application/json)
  
-    + Attributes (array[Reservations])
+    + Attributes (array[Reservation])
     
 + Response 400 (application/json)
     + Attributes 
@@ -462,7 +465,7 @@ As a result, user needs to authenticate again.
        
 + Response 200 (application/json)
  
-    + Attributes (array[Reservations])
+    + Attributes (array[Reservation])
 
 + Response 400 (application/json)
     + Attributes 
