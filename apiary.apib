@@ -41,7 +41,7 @@ HOST: http://http://localhost:5000
 ### NewMovie (object)
 - id: 1 (number, required)
 - name: Movie name (string, required)
-- images: cover_image.png, ./another/img.jpg (array[string], required) - Images related to the movie.
+- images (array[array[Image]], required) - Images related to the movie.
 - trailers: https://youtube... (array[string], required) - Trailers related to the movie
 - rating: 70 (number, required)
 - access: 12+ (string, nullable)
