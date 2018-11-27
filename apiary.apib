@@ -23,14 +23,19 @@ HOST: http://http://localhost:5000
 - latitude: 40.71 (number, required)
 - longtitude: 74.00 (number, required)  
 
+### Image (object)
+- id: 1 (number, required)
+- description: cover_image (string, required)
+- path: /assest/... (string, required)
+
 ### Movie (object)
 - id: 1 (number, required)
 - name: Movie name (string, required)
 - times: 1541190611, 1541190611 (array[number], required) - Timestamp in seconds, when movies are beigin projected
-- images: cover_image.png, ./another/img.jpg (array[string], required) - Images related to the movie. First image is the cover.
+- images (array[Image], required) - Images related to the movie. First image is the cover.
 - rating: 70 (number, required)
 - access: 12+ (string, nullable)
-- genre: Movie genre (string, required)
+- genres: Movie genre (array[string], required)
 - length: 155  (number, required) - Move length in minutes
 
 ### NewMovie (object)
