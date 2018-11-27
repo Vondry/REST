@@ -45,6 +45,7 @@ HOST: http://http://localhost:5000
 
 ### Hall (object)
 - id: 1 (number, required)
+- name (string, required)
 - seats (array[(array[number])], required) - every array in seats display seats row
     - 1, 1, 1, 1, 0, 0  (array[number], required) - Meaning of values: -1-no seat, 0-unavailable, 1-available
     - 1, 1, 1, 1, 0, 0  (array[number], required)
@@ -130,6 +131,14 @@ HOST: http://http://localhost:5000
 - payed (number, required) - timestamp in ms, when reservation was payed
 - updated (number, required) - timestamp in ms, when reservation was last edited
 - deleted (number, required) - timestamp in ms, when reservation was last deleted
+
+### PrintableReservation (object)
+- hallName (string, required) - name of hall where projection takes place
+- movieName (string, required)
+- projectionTime (string, required) - when projection for movie starts
+- seatCol (number, required)
+- seatRow (number, required)
+- paymentType (string, required) - payment type of the ticket - (Student, Adult, ZTP,...)
 
 ### Projection (object)
 - language (string, required)
@@ -423,7 +432,7 @@ As a result, user needs to authenticate again.
 `user`, `cashier`, `manager`, `CEO`
 
 
-## Lists reservations [/reservations]
+## Reservations [/reservations]
 
 ### Get all reservations [GET]
 
@@ -472,6 +481,35 @@ As a result, user needs to authenticate again.
  
     + Attributes (array[Reservation])
 
++ Response 400 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
++ Response 401 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
++ Response 403 (application/json)
+    + Attributes 
+        - errors (array[string])
+
+## Print Reservations [/reservations/{id}/printable]
+
+### Get reservation for print [GET]
+
+> For each Reservation there may be `x` PrintableReservations 
+`Count of seats in Reservations == Count of PrintableReservations for one Reservation`
+
+###### Access rights: `cashier`,  `manager`, `CEO`
+
++ Request Headers
+
+        Authorization: <tokenType> <accessToken>
+        
++ Response 200 (application/json)
+ 
+    + Attributes (array[PrintableReservation])
+    
 + Response 400 (application/json)
     + Attributes 
         - errors (array[string])
