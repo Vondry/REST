@@ -423,9 +423,10 @@ As a result, user needs to authenticate again.
 
 ## Lists reservations [/reservations]
 
-###### Access rights to reservations/**: higher than `user`
-
 ### Get all reservations [GET]
+
+###### Access rights: `cashier`,  `manager`, `CEO`
+
 + Request Headers
 
         Authorization: <tokenType> <accessToken>
@@ -449,6 +450,8 @@ As a result, user needs to authenticate again.
 ## Update Reservations [/reservations/{id}]
 
 ### Update reservation [PATCH]
+
+###### Access rights: `cashier`, `manager`, `CEO`
 
 - may include parts or whole reservation. Received reservation should be merged to the old one, which overwrites.
 
@@ -536,9 +539,10 @@ As a result, user needs to authenticate again.
 
 ## User [/users/{id}]
 
-###### Access rights to reservations/**: higher or equal to `user`
-
 ### User [GET]
+
+###### Access rights: higher or equal to `user`
+
 + Request Headers
 
         Authorization: <tokenType> <accessToken>
@@ -561,10 +565,38 @@ As a result, user needs to authenticate again.
 + Response 403 (application/json)
     + Attributes 
         - errors (array[string])
+
+### Delete User account [DELETE]
+
+###### Access rights: `user`, `CEO`, `admin`
+
++ Request Headers
+
+        Authorization: <tokenType> <accessToken>
+
++ Parameter
+    - id (number) - User id
+ 
++ Response 200 (application/json)
+
++ Response 400 (application/json)
+    + Attributes 
+        - errors (array[string])
         
++ Response 401 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
++ Response 403 (application/json)
+    + Attributes 
+        - errors (array[string])
+
 ### User reservations [/users/{id}/reservations]
 
-### User reservations [GET]
+### List user reservations [GET]
+
+###### Access rights: `user`, `cashier`, `manager`, `CEO`
+
 + Request Headers
 
         Authorization: <tokenType> <accessToken>
@@ -591,6 +623,9 @@ As a result, user needs to authenticate again.
 ### User refreshTokens [/users/{id}/refreshTokens]
 
 ### List refreshTokens [GET]
+
+###### Access rights: `user`, `admin`
+
 + Request Headers
 
         Authorization: <tokenType> <accessToken>
@@ -619,6 +654,9 @@ As a result, user needs to authenticate again.
 ### User refreshTokens [/users/{userId}/refreshTokens/{tokenId}]
 
 ### List refreshTokens [DELETE]
+
+###### Access rights: `user`, `admin`
+
 + Request Headers
 
         Authorization: <tokenType> <accessToken>
@@ -627,6 +665,39 @@ As a result, user needs to authenticate again.
     - userId (number) - User id
     - tokenId (number) - Refresh token id
 
++ Response 200 (application/json)
+
++ Response 400 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
++ Response 401 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
++ Response 403 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
+### Admin [/users/{id}/roles]
+
+### Change user role [PATCH]
+
+###### Access rights: `CEO`, `admin`
+
+When Role is changed, then all access and refresh tokens, for that user, are lost.
+
++ Request Headers
+
+        Authorization: <tokenType> <accessToken>
+
++ Parameter
+    - id (number) - User id
+
++ Request (application/json)
+    + Attributes
+       - role (string) - new user role
+       
 + Response 200 (application/json)
 
 + Response 400 (application/json)
