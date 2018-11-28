@@ -707,7 +707,9 @@ As a result, user needs to authenticate again.
 
 ### List refreshTokens [GET]
 
-###### Access rights: `user`, `admin`
+###### Access rights: `EVERYONE` logged in may view owned refreshTokens
+###### Additional access rights: `admin` may view refreshTokens of others
+
 
 + Request Headers
 
@@ -738,7 +740,8 @@ As a result, user needs to authenticate again.
 
 ### List refreshTokens [DELETE]
 
-###### Access rights: `user`, `admin`
+###### Access rights: `EVERYONE` logged in may delete owned refreshTokens
+###### Additional access rights: `admin` may delete refreshTokens to others
 
 + Request Headers
 
