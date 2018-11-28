@@ -442,8 +442,7 @@ As a result, user needs to authenticate again.
 > **422** - Access token is **malformed**. User needs to log-in again
 
 #### Roles
-> Priority for **shared** resources:
-`user`, `cashier`, `manager`, `CEO`
+`user`, `cashier`, `manager`, `CEO`, `admin`
 
 
 ## Reservations [/reservations]
@@ -595,7 +594,7 @@ As a result, user needs to authenticate again.
 
 ### Get User [GET]
 
-###### Access rights: higher or equal to `user`
+###### Access rights: `EVERYONE` logged in can get data on himself
 
 + Request Headers
 
@@ -622,7 +621,7 @@ As a result, user needs to authenticate again.
 
 ### Update User account [PATCH]
 
-###### Access rights: `user`
+###### Access rights: `EVERYONE` logged in can update owned account
 
 + Request Headers
 
@@ -651,7 +650,8 @@ As a result, user needs to authenticate again.
 
 ### Delete User account [DELETE]
 
-###### Access rights: `user`, `CEO`, `admin`
+###### Access rights: `EVERYONE` logged in can delete account to yourself. 
+###### Additionall access rights: `CEO`, `admin` may delete account to other users
 
 + Request Headers
 
@@ -678,7 +678,7 @@ As a result, user needs to authenticate again.
 
 ### List user reservations [GET]
 
-###### Access rights: `user`, `cashier`, `manager`, `CEO`
+###### Access rights: `EVERYONE` logged in can view owned reservations. 
 
 + Request Headers
 
