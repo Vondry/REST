@@ -536,7 +536,31 @@ As a result, user needs to authenticate again.
     + Attributes 
         - errors (array[string])
         
-## Create Projection [/projections]
+## Projections [/projections]
+
+### Get all projections [GET]
+
+###### Access rights: `cashier`,  `manager`, `CEO`
+
++ Request Headers
+
+        Authorization: <tokenType> <accessToken>
+        
++ Response 200 (application/json)
+ 
+    + Attributes (array[Projection])
+    
++ Response 400 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
++ Response 401 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
++ Response 403 (application/json)
+    + Attributes 
+        - errors (array[string])
 
 ### Create Projection [PUT]
 
