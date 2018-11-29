@@ -134,12 +134,13 @@ HOST: http://http://localhost:5000
 - updated (number, required) - timestamp in ms, when reservation was last edited
 - deleted (number, required) - timestamp in ms, when reservation was last deleted
 
-### PrintableReservation (object)
+### ReservationTicket (object)
 - hallName (string, required) - name of hall where projection takes place
 - movieName (string, required)
 - projectionTime (string, required) - when projection for movie starts
 - seatCol (number, required)
 - seatRow (number, required)
+- price (number, required)
 - paymentType (string, required) - payment type of the ticket - (Student, Adult, ZTP,...)
 
 ### Projection (object)
@@ -506,7 +507,7 @@ As a result, user needs to authenticate again.
     + Attributes 
         - errors (array[string])
 
-## Print Reservations [/reservations/{id}/printable]
+## Print Reservations [/reservations/{id}/tickets]
 
 ### Get reservation for print [GET]
 
@@ -521,7 +522,7 @@ As a result, user needs to authenticate again.
         
 + Response 200 (application/json)
  
-    + Attributes (array[PrintableReservation])
+    + Attributes (array[ReservationTicket])
     
 + Response 400 (application/json)
     + Attributes 
