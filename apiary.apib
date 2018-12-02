@@ -151,6 +151,14 @@ HOST: http://http://localhost:5000
 - movieId (number, required)
 - movieTime (number, required)
 
+### GlobalDashboard
+- price (number, required) - total amount of money payed for all reservations
+- reservations (array, required) - aggregated count of reservations which was paied or unpaid each day
+    - (object)
+        - time (number, required) - timestamp
+        - paid (number, required) - count of reservation which was paid
+        - unpaid (number, required) - count of reservation which was not paid
+
 # Group Reservation
 
 Data related to reservation system
@@ -811,6 +819,32 @@ When Role is changed, then all access and refresh tokens, for that user, are los
        
 + Response 200 (application/json)
 
++ Response 400 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
++ Response 401 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
++ Response 403 (application/json)
+    + Attributes 
+        - errors (array[string])
+        
+        
+### Dashboards [/dashboards/global]
+
+### Global statistics [GET]
+
+###### Access rights:  `manager`, `CEO`
+
++ Request Headers
+
+        Authorization: <tokenType> <accessToken>
+
++ Response 200 (application/json)
+    + Attributes
+        - Include GlobalDashboard
 + Response 400 (application/json)
     + Attributes 
         - errors (array[string])
