@@ -124,6 +124,7 @@ HOST: http://http://localhost:5000
 - payed (number, required) - timestamp in ms, when reservation was payed
 - updated (number, required) - timestamp in ms, when reservation was last edited
 - deleted (number, required) - timestamp in ms, when reservation was last deleted
+- projectionId (number, required)
 
 ### UserReservation (object)
 - id (number, required)
@@ -150,6 +151,7 @@ HOST: http://http://localhost:5000
 - hallId (number, required)
 - movieId (number, required)
 - movieTime (number, required)
+- cinemaName (string, required)
 
 ### GlobalDashboard
 - paid (number, required) - total amount of money for already payed reservations
