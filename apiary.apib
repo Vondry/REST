@@ -152,7 +152,8 @@ HOST: http://http://localhost:5000
 - movieTime (number, required)
 
 ### GlobalDashboard
-- price (number, required) - total amount of money payed for all reservations
+- paid (number, required) - total amount of money for already payed reservations
+- unpaid (number, required) - total amount of money for not yet payed reservations
 - reservations (array, required) - aggregated count of reservations which was paied or unpaid each day
     - (object)
         - time (number, required) - timestamp
